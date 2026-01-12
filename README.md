@@ -3,8 +3,14 @@ ALOHA CLASS 더조은컴퓨터아카데미 - JSP 평가 - 쇼핑몰 초기 프�
 
 <a href="http://알클서버.com" target="_blank">사이트 바로가기 🔗 </a>
 
+# Shopping (JDK17,21, Tomcat10.1)
+<a href="https://wwwaloha.oopy.io/2e6e397e-5311-80f2-a396-c3b56d901d30" target="_blank">시험지 🔗 </a>
 
 
+# Shop (JDK11, Tomcat8.5)
+<details>
+<summary>Shop</summary>
+<div markdown="1">
 
 ## 주요 기능
 ### 회원
@@ -189,3 +195,6 @@ ALOHA CLASS 더조은컴퓨터아카데미 - JSP 평가 - 쇼핑몰 초기 프�
 
 
 
+
+</div>
+</details>
