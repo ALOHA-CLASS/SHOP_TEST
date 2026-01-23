@@ -8,21 +8,41 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.annotation.WebInitParam;
 
+@WebFilter(
+    urlPatterns = "/*",
+    initParams = {
+        @WebInitParam(name = "encoding", value = "UTF-8")
+    }
+)
 public class EncodingFilter implements Filter {
-	
-	private String encoding; 
-	
-	/**
-	 * TODO : 요청 및 응답에 대한 문자 인코딩 타입을 'UTF-8' 으로 설정
-	 * - 필터가 초기화 될 때, web.xml 에서 설정한 초기 파라미터 "encoding"을 가져와 멤버변수 encoding(String) 에 초기화한다.
-	 * - 필터가 실행될 때, 요청 객체와, 응답 객체에 문자 인코딩을 멤버변수 encoding 으로 설정하고 다음 필터를 호출한다.
-	 */
+
+    private String encoding;
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // 어노테이션에서 설정한 초기 파라미터 가져오기
+        encoding = filterConfig.getInitParameter("encoding");
+        System.out.println("EncodingFilter init : " + encoding);
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+
+        System.out.println("인코딩 필터 : " + encoding);
+
+        request.setCharacterEncoding(encoding);
+        response.setCharacterEncoding(encoding);
+
+        // 다음 필터 또는 서블릿으로 전달
+        chain.doFilter(request, response);
+    }
+
+    @Override
+    public void destroy() {
+        // 정리 작업 필요 시 사용
+    }
 }
-
-
-
-
-
-
-
